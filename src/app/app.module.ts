@@ -17,17 +17,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthService } from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-let firebaseConfig = {
-    apiKey: "AIzaSyBndLLaE7zwzKk2oDRzTta24oWHm54Idr8",
-    authDomain: "music-turn.firebaseapp.com",
-    databaseURL: "https://music-turn.firebaseio.com/",
-    storageBucket: "bucket.appspot.com"
-};
 
 const modules = [
     MatInputModule,
@@ -60,6 +54,7 @@ const modules = [
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         AngularFirestoreModule,
+        AngularFireDatabaseModule,
         BrowserAnimationsModule,
         MaterialModule
     ],

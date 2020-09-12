@@ -6,13 +6,16 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
+import { AuthGuard } from './guards/auth.guard'
+import { SecureInnerPageGuardGuard } from './guards/secure-inner-page-guard.guard'
+
 const routes: Routes = [
     { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'sign-in', component: SignInComponent },
-    { path: 'sign-up', component: SignUpComponent },
-    { path: 'verify-email', component: VerifyEmailComponent }
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPageGuardGuard] },
+    { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPageGuardGuard] },
+    { path: 'sign-up', component: SignUpComponent, canActivate: [SecureInnerPageGuardGuard] },
+    { path: 'verify-email', component: VerifyEmailComponent, canActivate: [SecureInnerPageGuardGuard] }
 ];
 
 @NgModule({

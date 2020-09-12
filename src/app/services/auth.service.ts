@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabase } from "@angular/fire/database";
 import { Router } from '@angular/router';
 import { auth } from 'firebase';
 import { User } from '../interfaces/user'
@@ -13,7 +13,7 @@ export class AuthService {
     constructor(
         public afAuth: AngularFireAuth,
         public router: Router,
-        public fire: firebase
+        public db: AngularFireDatabase
     ) {
         this.afAuth.authState.subscribe(user => {
             if (user) {
@@ -39,10 +39,12 @@ export class AuthService {
     }
 
     SendVerificationEmail() {
-        // return this.afAuth.currentUser.sendEmailVerification()
-        //     .then(() => {
-        //         this.router.navigate(['verify-email-address']);
-        //     })
+        return this.afAuth.currentUser.then(u => {
+            u.sendEmailVerification()
+        })
+            .then(() => {
+                this.router.navigate(['verify-email-address']);
+            })
     }
 
     SignIn(email, password) {
@@ -55,7 +57,7 @@ export class AuthService {
     }
 
     setUserData(user) {
-        let UserRef = firebase.database().ref('users/' + user.uid);
+        let UserRef = this.db.database.ref('users/' + user.uid);
         const userData: User = {
             uid: user.uid,
             email: user.email,
