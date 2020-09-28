@@ -27,6 +27,7 @@ export class AuthService {
         });
     }
 
+
     SignUp(email, password) {
         this.afAuth.createUserWithEmailAndPassword(email, password)
             .then(result => {
@@ -79,6 +80,7 @@ export class AuthService {
                 window.alert(error.message);
             });
     }
+
 
     get isLoggedIn() {
         let user = JSON.parse(localStorage.getItem('user'));

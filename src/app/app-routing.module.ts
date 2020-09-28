@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AccountComponent } from './components/account/account.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 import { AuthGuard } from './guards/auth.guard'
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPageGuardGuard] },
     { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPageGuardGuard] },
     { path: 'sign-up', component: SignUpComponent, canActivate: [SecureInnerPageGuardGuard] },
-    { path: 'verify-email', component: VerifyEmailComponent, canActivate: [SecureInnerPageGuardGuard] }
+    { path: 'verify-email', component: VerifyEmailComponent, canActivate: [SecureInnerPageGuardGuard] },
+    { path: 'account', component: AccountComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
